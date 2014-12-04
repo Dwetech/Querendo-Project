@@ -1,0 +1,101 @@
+@media (max-width: 980px) {
+
+    /*header*/
+    .websiteName h1{
+        text-align: center;
+    }
+    .websiteName h1 a img.imgAuto{
+        width: auto;
+    }
+    .options{
+        float: inherit;
+        margin: 30px auto;
+        width: 140px;
+    }
+
+
+    /*Find Seller*/
+    .searchOption .form-group .col-md-2{
+        display: inline-block;
+        float: right;
+        margin: 10px 0;
+    }
+
+
+    /*User Detais*/
+    .user-info {
+        border-right: none;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 10px 0 20px 0;
+    }
+    .user-data{
+        padding-bottom: 0;
+    }
+    .user-potentian {
+        padding: 20px 0;
+        text-align: left;
+    }
+    .user-potentian h3 {
+        text-align: left;
+    }
+
+    .user-potentian h1 {
+        text-align: left;
+    }
+
+    .user-potentian a {
+        text-align: left;
+    }
+
+
+    /*Product Detais*/
+    .bidBudgetDetails .activity{
+        width: 100%;
+    }
+    .bidBudgetDetails .activity .activityInfo {
+        padding: 0 70px;
+    }
+    .bidBudgetDetails .activity .activityInfo:last-child {
+        padding: 0 70px;
+    }
+    .dateRunning .activity .activityInfo {
+        padding: 0;
+        width: 100%;
+    }
+
+    .budgetDescription .proDes{
+        border-bottom: 1px solid #e6e6e6;
+        display: inline-block;
+        float: left;
+        padding: 0 0 20px;
+        width: 100%;
+    }
+    .budgetDescription .proOwn{
+        border-bottom: 1px solid #e6e6e6;
+        display: inline-block;
+        float: left;
+        padding: 20px 0;
+        width: 100%;
+    }
+    .buyerData .buyDes{
+        display: inline-block;
+        float: left;
+    }
+    .buyerData .buyImg{
+        display: inline-block;
+        float: left;
+    }
+    .product_image .proImg{
+        width: 30%;
+        float: left;
+    }
+
+
+    /*User Settings*/
+    /*.user-profilePicture-settings-section {*/
+        /*width: 50%;*/
+        /*float: right;*/
+        /*display: inline-block;*/
+        /*padding: 0;*/
+    /*}*/
+}
