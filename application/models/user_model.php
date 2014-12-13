@@ -9,7 +9,7 @@
 class User_model extends CI_Model {
     
     function check_profile_complete($user_id) {
-        $query = $this->db->select('first_name, last_name, country, state, country, postal_code, contact_address, profile_pic')
+        $query = $this->db->select('first_name, last_name, country, state, postal_code, contact_address, profile_pic, timezone, shipping_address')
                 ->from('user')
                 ->where('id', $user_id)
                 ->get();
@@ -23,9 +23,13 @@ class User_model extends CI_Model {
             if (empty($data->last_name))
                 $empty_data .= 'Sobrenome, ';
             if (empty($data->country))
-                $empty_data .= 'País, ';
+                $empty_data .= 'paÃ­s, ';
             if (empty($data->contact_address))
-                $empty_data .= 'Endereço';
+                $empty_data .= 'EndereÃ§o, ';
+            if (empty($data->timezone))
+                $empty_data .= 'Timezone, ';
+            if (empty($data->shipping_address))
+                $empty_data .= 'Shipping Address ';
             
             return $empty_data;
                 

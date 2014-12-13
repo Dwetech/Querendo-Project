@@ -178,7 +178,7 @@ class Product_model extends CI_Model {
     }
 
     function get_products() {
-        $this->db->select('*');
+        $this->db->select('*, user.status AS user_status, product.status AS product_status');
         $this->db->from('product');
         $this->db->join('user', 'product.user_id = user.id');
         $query = $this->db->get();

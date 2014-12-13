@@ -59,4 +59,55 @@ class Invoice_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    /**
+     *  Get invoice details by ID
+     *
+     * @param $invoice_id
+     * @return bool
+     */
+    public function get($invoice_id)
+    {
+
+        $query = $this->db->get_where('invoice',array('invoice_id'=>$invoice_id));
+
+        if( $query->num_rows() > 0 )
+        {
+            return $query->row();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /**
+     *  Get invoice details along with product info
+     *
+     * @param $invoice_id
+     * @return bool
+     */
+    public function getFullDetails($invoice_id)
+    {
+        $this->db->from('invoice')
+            ->join('product', 'product.product_id = invoice.product_id', 'LEFT')
+            ->where('invoice.invoice_id', $invoice_id);
+
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 )
+        {
+            return $query->row();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public function update($invoice_id, $data) {
+        $this->db->update('invoice', $data, array('invoice_id'=>$invoice_id));
+    }
+
 }
