@@ -183,4 +183,8 @@ function strToUrl ($string)
 
 }
 
+function toCurrency($currency) {
+    return number_format((float)$currency, 2, '.', '');
+}
+
 
