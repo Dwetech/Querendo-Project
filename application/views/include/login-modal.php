@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -39,27 +39,27 @@
                         <div class="col-md-10 col-md-offset-1">
 
 
-                                <div class="form-group">
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Senha">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember_me" type="checkbox"> Lembrar-me
-                                    </label>
-                                </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Senha">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember_me" type="checkbox"> Lembrar-me
+                                </label>
+                            </div>
 
                         </div>
                     </div>
 
-                </div>
-                <div class="modal-footer">
-                    <a onclick="forgot_password();" class="pull-left pointer">Esqueceu sua senha?</a>
-                    <button type="submit" class="btn btn-primary" name="submit" value="Submit">Entrar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <a onclick="forgot_password();" class="pull-left pointer">Esqueceu sua senha?</a>
+                <button type="submit" class="btn btn-primary" name="submit" value="Submit">Entrar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
             </form>
         </div>
     </div>

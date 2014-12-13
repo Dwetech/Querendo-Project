@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -38,7 +38,7 @@
                             <a href="<?php echo base_url(); ?>product/categories/<?php echo $childCategory['url'] ?>"><i
                                     class="iconCat glyphicon glyphicon-play mar-right-small"></i> <?php echo $childCategory['cat_name'] ?>
                                 (<?php echo $count; ?>)</a>
-                            <?php
+                        <?php
                         }
                     }
                     ?>
@@ -46,7 +46,7 @@
 
                 </div>
 
-                <?php
+            <?php
             }
         }
         ?>

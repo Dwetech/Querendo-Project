@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -7,6 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 ?>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title><?php echo $this->settings_model->data['website_name'] ?></title>

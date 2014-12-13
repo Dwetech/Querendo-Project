@@ -1,4 +1,4 @@
-﻿<div class="col-md-10 col-md-offset-1 noPadding">
+<div class="col-md-10 col-md-offset-1 noPadding">
     <div class="dashboard-section">
         <div class="page-header">
             <h2>
@@ -24,8 +24,8 @@
             <?php foreach($balance as $log){ ?>
                 <tr>
                     <td><span class="label <?php echo $log->type == 'credit' ? 'label-success' : 'label-danger'; ?>"><?php echo $log->type ?></span></td>
-                    <td><b>$<?php echo $log->amount ?></b></td>
-                    <td><b>$<?php echo $log->currentBalance ?></b></td>
+                    <td><b>$<?php echo number_format((float)$log->amount, 2, '.', '') ?></b></td>
+                    <td><b>$<?php echo number_format((float)$log->currentBalance, 2, '.', '') ?></b></td>
                     <td><?php echo $log->description ?></td>
                     <td class="text-center"><?php echo date("d M, Y", strtotime($log->created)) . ' at ' . date("g:i a", strtotime($log->created)); ?></td>
                 </tr>

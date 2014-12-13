@@ -1,4 +1,4 @@
-﻿<?php if (!empty($bids)) { ?>
+<?php if (!empty($bids)) { ?>
 
     <table class="table" style="margin-top: 100px;">
 
@@ -56,13 +56,13 @@
                                 <p class="text-small noPadding lightAsh"><?php echo timespan(mysql_to_unix($bid->create_date)); ?> atrás</p>
 
                                 <p class="text-small_custom lessDescription">
-                                        <?php
-                                        if (strlen($bid->proposal_text) > 100) {
-                                            echo substr($bid->proposal_text, 0, 100) . ' ... ... ... <a class="expand text-info pointer"><b>(mais)</b></a>';
-                                        } else {
-                                            echo $bid->proposal_text;
-                                        }
-                                        ?>
+                                    <?php
+                                    if (strlen($bid->proposal_text) > 100) {
+                                        echo substr($bid->proposal_text, 0, 100) . ' ... ... ... <a class="expand text-info pointer"><b>(mais)</b></a>';
+                                    } else {
+                                        echo $bid->proposal_text;
+                                    }
+                                    ?>
                                 </p>
 
                                 <p style="display: none" class="text-small_custom fullDescription">
@@ -86,7 +86,7 @@
                         </div>
                     </td>
                     <td class="text-center removeRelative" id="acceptBid">
-                        <h4 class="text-bold noMargin">R$<?php echo $bid->bid_amount; ?></h4>
+                        <h4 class="text-bold noMargin">R$<?php echo number_format((float)$bid->bid_amount, 2, '.', ''); ?></h4>
                         <p class="noPadding normalAsh">Em <b><?php echo $bid->delivery_time; ?></b> dia(s)</p>
 
                         <?php
@@ -128,10 +128,10 @@
 
                                     <?php
                                     }
-                                    
-                                    
+
+
                                 }
-                                
+
                             }
                         }
                         ?>
@@ -154,17 +154,17 @@
 
                                         /*//BID STATUS REGULAR
                                         if ($bid->status == 'Regular') {
-                                            
+
                                         } else if ($bid->status == 'Waiting') {
-                                            
-                                            
+
+
                                         } else {
-                                            
-                                            
+
+
                                         }*/
                                         ?>
 
-                                        <a data-placement="right" title="Rejeitar" data-toggle="tooltip" class="bidRemove pull-right btn btn-danger mar-left-small" 
+                                        <a data-placement="right" title="Rejeitar" data-toggle="tooltip" class="bidRemove pull-right btn btn-danger mar-left-small"
                                            onclick="return confirm('Tem certeza que deseja rejeitar esta oferta?')"
                                            href="<?php echo base_url() . 'bid/delete/' . $bid->bid_id; ?>">
                                             <i class="glyphicon glyphicon-remove"></i>

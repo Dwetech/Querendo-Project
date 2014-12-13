@@ -1,5 +1,5 @@
-﻿<!doctype html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
     <?php $this->load->view('include/head.php'); ?>
 </head>

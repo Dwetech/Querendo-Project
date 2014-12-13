@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -11,9 +11,9 @@
 <div class="user-profilePicture-settings-section">
     <div class="profile-picture online">
         <?php if (!empty($this->auth->user_data->profile_pic)) { ?>
-            <img id="user_photo" class="imgAuto" src="<?php echo base_url() . 'upload/profile_photo/' . $user->profile_pic; ?>?<?php echo Time(); ?>" alt="" 
+            <img id="user_photo" class="imgAuto" src="<?php echo base_url() . 'upload/profile_photo/' . $user->profile_pic; ?>?<?php echo Time(); ?>" alt=""
                  data-photo="<?php echo $user->profile_pic; ?>"/>
-            <?php
+        <?php
         } else {
             ?>
             <img class="imgAuto" src="<?php echo base_url() . 'resources/img/blank.png'; ?>" alt=""/>

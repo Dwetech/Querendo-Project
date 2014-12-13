@@ -1,14 +1,14 @@
-﻿<div class="chat_box">
+<div class="chat_box">
     <?php
     $message_id = '0';
     $thread_id = '0';
-    
+
     if (!empty($conversation)) {
-        
-        
+
+
         foreach ($conversation as $conversation) {
-            
-            
+
+
             $message_id = $conversation->id;
             $thread_id = $conversation->thread_id;
 
@@ -36,11 +36,11 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
             <?php } else {//Displaying message form other side  ?>
-    
-    
+
+
                 <div class="chatCon">
                     <div class="col-md-12">
                         <div class="col-md-1 noRpad">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <?php
+            <?php
             }
         }
     }
@@ -76,7 +76,7 @@
     <input type="hidden" id="message_id" name="message_id" value="<?php echo $message_id; ?>" />
     <input type="hidden" id="thread_id" name="thread_id" value="<?php echo $thread_id; ?>" />
     <input type="text" id="message" class="form-control chatInput" name="message"/>
-    <button class="btn btn-primary pull-right chatSubmit" id="send_message" type="button" name="submit" value="send">Enviar</button>
+    <button class="btn btn-primary pull-right chatSubmit" id="send_message" type="submit" name="submit" value="send">Enviar</button>
 </form>
 <script>
     $(document).ready(function() {
@@ -98,11 +98,11 @@
             var message = $("#message").val();
             if (message  == '')
                 return false;
-            
+
             querendo.send_message(product_id, from_id, to_id, message, profile_photo, base_url);
             return false;
         });
-        
+
         //Fetching message
         querendo.fetch_messages(product_id, from_id, to_id, base_url);
     });

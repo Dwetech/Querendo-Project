@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en-US">
 <head>
     <?php $this->load->view('admin/include/head'); ?>

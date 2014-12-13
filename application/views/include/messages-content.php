@@ -1,4 +1,4 @@
-﻿<!--HEADER INFO  => User Name, Product Name-->
+<!--HEADER INFO  => User Name, Product Name-->
 <div class="messageHeading">
     <div class="col-md-4 noPadding">
         <div class="userHeading">

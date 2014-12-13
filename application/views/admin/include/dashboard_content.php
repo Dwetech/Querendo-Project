@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Dashboard
     </h1>
 </div>

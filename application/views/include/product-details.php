@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -23,4 +23,4 @@
 
 <script type="text/javascript">
     $('.profileMap').tooltip();
-</script> 
+</script>

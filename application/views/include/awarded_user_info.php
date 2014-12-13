@@ -1,4 +1,4 @@
-﻿<div class="activity-table">
+<div class="activity-table">
     <table class="table table-striped noBorder">
         <colgroup>
             <col class="col-xs-2">

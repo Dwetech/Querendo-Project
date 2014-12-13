@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $chart = '';
 $month = (int)date('m');
@@ -101,7 +101,7 @@ for ($i = 1; $i <= $monthDay; $i++) {
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
     }
-    
+
     $(".show_balance_performance").on('click', function() {
         var name = $('.show_balance_performance').attr('data-content');
         if(name == "Show Balance Performance"){

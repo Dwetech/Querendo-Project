@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -24,7 +24,7 @@
                         <div class="btn-group">
                             <a type="button" class="btn btn-user" style="color: white;text-decoration: none;"
                                href="<?php echo base_url() . 'user/view/' . $_SESSION['user_name']; ?>">
-                                   <?php echo $_SESSION['user_name']; ?>
+                                <?php echo $_SESSION['user_name']; ?>
                             </a>
                             <button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
@@ -48,9 +48,9 @@
                                     <img class="imgAuto"
                                          src="<?php echo base_url() . 'upload/profile_photo/' . $this->auth->user_data->profile_pic; ?>"
                                          alt=""/>
-                                         <?php
-                                     } else {
-                                         ?>
+                                <?php
+                                } else {
+                                    ?>
                                     <img class="imgAuto" src="<?php echo base_url(); ?>resources/img/blank.png" alt=""/>
                                 <?php } ?>
                             </a>
@@ -98,7 +98,7 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <?php
+                                            <?php
                                             }
                                         }
                                     }
@@ -147,7 +147,7 @@
                 </div>
 
             </div>
-<!--            <div class="col-md-2 pull-right">
+            <!--            <div class="col-md-2 pull-right">
                 <div class="balance">
                     <?php //$balance = $this->user_model->getBalance($_SESSION['user_id']); ?>
                     <ul>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $bid_status = '';
 $product_transaction_status = '';
 $awardedUser = '';
@@ -20,191 +20,191 @@ if (!empty($bids)) {
 
         <table class="table awarded">
             <thead>
-                <tr class="tableHead">
-                    <th>Premiado</th>
-                    <th class="text-center" width="170px" class="text-center">Lance</th>
-                </tr>
+            <tr class="tableHead">
+                <th>Premiado</th>
+                <th class="text-center" width="170px" class="text-center">Lance</th>
+            </tr>
             </thead>
             <tbody>
-                <?php
-                $awardedUser = '';
+            <?php
+            $awardedUser = '';
 
-                foreach ($bids as $bid) {
+            foreach ($bids as $bid) {
 
 
-                    if ($bid->status == 'Completed' || $bid->status == 'Awarded') {
+                if ($bid->status == 'Completed' || $bid->status == 'Awarded') {
 
-                        //save the awarded user into a variable
-                        $awardedUser = $bid->user_id;
-                        $product_transaction_status = $product_data->transaction_status;
-                        $bid_status = $bid->status;
-                        $bidder_id = $bid->bidder_id;
-                        ?>
-                        <tr>
-                            <td>
-                                <div class="col-sm-11 noPadding">
-                                    <div class="col-sm-2 noPadding text-center">
-                                        <?php if (!empty($bid->profile_pic)) { ?>
-                                            <div class="profile-picture-img">
-                                                <img class="imgAuto bid_list_profile_pic"
-                                                     src="<?php echo base_url() . 'upload/profile_photo/' . $bid->profile_pic; ?>"
-                                                     alt=""/>
-                                            </div>
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <div class="profile-picture-img">
-                                                <img class="imgAuto bid_list_profile_pic"
-                                                     src="<?php echo base_url() . 'upload/profile_photo/' ?>" alt=""/>
-                                            </div>
-                                        <?php } ?>
-
-                                        <a class="text-small text-center" href="#"><?php echo $bid->seller_review_count; ?>
-                                            Avaliações</a>
-                                        <input id="input-21e"
-                                               value="<?php echo $bid->seller_review; ?>" class="rating rating_star"
-                                               min="0" max="5" step="1" data-size="xs" data-disabled="true"
-                                               data-show-caption="false" data-show-clear="false">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <a href="<?php echo base_url() ?>user/view/<?php echo $bid->user_name; ?>"
-                                           class="text-bold"><?php echo $bid->user_name; ?>
-                                            <span data-toggle="tooltip"
-                                                  title="<?php echo!empty($country->iso_code_2) ? $country->name : ''; ?>"
-                                                  data-placement="left"
-                                                  class="sellerMap flag flag-<?php echo!empty($country->iso_code_2) ? strtolower($country->iso_code_2) : ''; ?>">
-                                            </span>
-                                        </a>
-
-                                        <p class="text-small noPadding lightAsh"><?php echo timespan(mysql_to_unix($bid->create_date)); ?>
-                                            atrás</p>
-
-                                        <p class="text-small_custom lessDescription">
-                                            <?php
-                                            if (strlen($bid->proposal_text) > 100) {
-                                                echo substr($bid->proposal_text, 0, 100) . ' ... ... ... <a class="expand text-info pointer"><b>(mais)</b></a>';
-                                            } else {
-                                                echo $bid->proposal_text;
-                                            }
-                                            ?>
-                                        </p>
-
-                                        <p style="display: none" class="text-small_custom fullDescription">
-                                            <?php echo $bid->proposal_text . '<br><a class="defeat text-info pointer"><b>(menos)</b></a>'; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1 noPadding">
-                                    <?php if (!empty($bid->product_image)) { ?>
-                                        <a href="<?php echo base_url() . 'upload/bid_photo/' . $bid->product_image; ?>" class="image-popup-vertical-fit">
-                                            <img data-toggle="tooltip" data-placement="right" title="Clique para ampliar" class="imgAuto productImage"
-                                                 src="<?php echo base_url() . 'upload/bid_photo/' . $bid->product_image; ?>">
-                                        </a>
-                                    <?php } else { ?>
-                                        <a href="<?php echo base_url() . 'resources/img/no_image.gif'; ?>" class="image-popup-vertical-fit">
-                                            <img data-toggle="tooltip" data-placement="right" title="Clique para ampliar" class="imgAuto productImage" 
-                                                 src="<?php echo base_url() . 'resources/img/no_image.gif'; ?>">
-                                        </a>
+                    //save the awarded user into a variable
+                    $awardedUser = $bid->user_id;
+                    $product_transaction_status = $product_data->transaction_status;
+                    $bid_status = $bid->status;
+                    $bidder_id = $bid->bidder_id;
+                    ?>
+                    <tr>
+                        <td>
+                            <div class="col-sm-11 noPadding">
+                                <div class="col-sm-2 noPadding text-center">
+                                    <?php if (!empty($bid->profile_pic)) { ?>
+                                        <div class="profile-picture-img">
+                                            <img class="imgAuto bid_list_profile_pic"
+                                                 src="<?php echo base_url() . 'upload/profile_photo/' . $bid->profile_pic; ?>"
+                                                 alt=""/>
+                                        </div>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        <div class="profile-picture-img">
+                                            <img class="imgAuto bid_list_profile_pic"
+                                                 src="<?php echo base_url() . 'upload/profile_photo/' ?>" alt=""/>
+                                        </div>
                                     <?php } ?>
+
+                                    <a class="text-small text-center" href="#"><?php echo $bid->seller_review_count; ?>
+                                        Avaliações</a>
+                                    <input id="input-21e"
+                                           value="<?php echo $bid->seller_review; ?>" class="rating rating_star"
+                                           min="0" max="5" step="1" data-size="xs" data-disabled="true"
+                                           data-show-caption="false" data-show-clear="false">
                                 </div>
+                                <div class="col-sm-9">
+                                    <a href="<?php echo base_url() ?>user/view/<?php echo $bid->user_name; ?>"
+                                       class="text-bold"><?php echo $bid->user_name; ?>
+                                        <span data-toggle="tooltip"
+                                              title="<?php echo!empty($country->iso_code_2) ? $country->name : ''; ?>"
+                                              data-placement="left"
+                                              class="sellerMap flag flag-<?php echo!empty($country->iso_code_2) ? strtolower($country->iso_code_2) : ''; ?>">
+                                            </span>
+                                    </a>
+
+                                    <p class="text-small noPadding lightAsh"><?php echo timespan(mysql_to_unix($bid->create_date)); ?>
+                                        atrás</p>
+
+                                    <p class="text-small_custom lessDescription">
+                                        <?php
+                                        if (strlen($bid->proposal_text) > 100) {
+                                            echo substr($bid->proposal_text, 0, 100) . ' ... ... ... <a class="expand text-info pointer"><b>(mais)</b></a>';
+                                        } else {
+                                            echo $bid->proposal_text;
+                                        }
+                                        ?>
+                                    </p>
+
+                                    <p style="display: none" class="text-small_custom fullDescription">
+                                        <?php echo $bid->proposal_text . '<br><a class="defeat text-info pointer"><b>(menos)</b></a>'; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 noPadding">
+                                <?php if (!empty($bid->product_image)) { ?>
+                                    <a href="<?php echo base_url() . 'upload/bid_photo/' . $bid->product_image; ?>" class="image-popup-vertical-fit">
+                                        <img data-toggle="tooltip" data-placement="right" title="Clique para ampliar" class="imgAuto productImage"
+                                             src="<?php echo base_url() . 'upload/bid_photo/' . $bid->product_image; ?>">
+                                    </a>
+                                <?php } else { ?>
+                                    <a href="<?php echo base_url() . 'resources/img/no_image.gif'; ?>" class="image-popup-vertical-fit">
+                                        <img data-toggle="tooltip" data-placement="right" title="Clique para ampliar" class="imgAuto productImage"
+                                             src="<?php echo base_url() . 'resources/img/no_image.gif'; ?>">
+                                    </a>
+                                <?php } ?>
+                            </div>
 
 
-                            </td>
+                        </td>
 
 
-                            <td class="text-center removeRelative" id="confirmBid">
-                                <h3 class="text-bold">R$ <?php echo $bid->bid_amount; ?></h3>
+                        <td class="text-center removeRelative" id="confirmBid">
+                            <h3 class="text-bold">R$ <?php echo number_format((float)$bid->bid_amount, 2, '.', ''); ?></h3>
+
+                            <?php
+                            //IF USER IS LOGGED IN AND STATUS IS ACTIVE
+                            if ($this->auth->logged_in && $this->auth->is_active) {
+
+
+                                //IF PRODUCT IS HAVING RUNNING STATUS
+                                if ($product_data->product_status == 'running') {
+
+
+                                    //IF LOGGED IN USER IS BIDDER OF THIS BID AND BID STATUS IS REGULAR
+                                    if (($bid->bidder_id == $_SESSION['user_id']) && ($bid->status == 'Regular')) {
+                                        ?>
+                                        <a class="btn btn-primary" href="#bid" onclick="showBid()">Editar</a>
+                                        <a class="bidRemove" onclick="return confirm('Tem certeza que deseja deletar esse lance?')"
+                                           href="<?php echo base_url() . 'bid/delete/' . $bid->bid_id; ?>">
+                                            <i class="glyphicon glyphicon-remove text-danger"></i></a>
+
+
+                                    <?php
+                                    }
+                                } else if ($product_data->product_status == 'waiting') {
+
+
+                                    //IF LOGGED IN USER IS BIDDER OF THIS BID AND BID STATUS IS WAITING
+                                    if (($bid->bidder_id == $_SESSION['user_id']) && ($bid->status == 'Waiting')) {
+                                        ?>
+                                        <a class="btn btn-warning" onclick="return confirm('Tem certeza que deseja ACEITAR este lance?')"
+                                           href="<?php echo base_url() . 'bid/confirm/' . $bid->bid_id; ?>">Confirmar</a>
+                                        <a class="btn btn-default" href="<?php echo base_url() . 'bid/cancel/' . $bid->bid_id; ?>"
+                                           onclick="return confirm('Tem certeza que deseja cancelar este lance?')">Cancelar</a>
+
+
+                                    <?php
+                                    }
+                                } else if ($product_data->product_status == 'awarded') {
+                                    ?>
+
+
+                                    <div class="label label-success">Aceito</div>
+                                    <?php
+                                    if (($bid->bidder_id == $_SESSION['user_id'])) {
+
+                                        if ($product_transaction_status == 'payment_sent') {
+                                            ?>
+                                            <div class="label label-info">Pagamento enviado</div>
+
+                                        <?php
+                                        }
+                                        if ($product_transaction_status == 'payment_received') {
+                                            ?>
+                                            <div class="label label-info">Pagamento recebido</div>
+                                        <?php
+                                        }
+                                        if ($product_data->transaction_status == 'product_sent') {
+                                            ?>
+                                            <div class="label label-info">Produto enviado</div>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+
+
 
                                 <?php
-                                //IF USER IS LOGGED IN AND STATUS IS ACTIVE
-                                if ($this->auth->logged_in && $this->auth->is_active) {
+                                } else if ($product_data->product_status == 'completed') {
+                                    ?>
 
 
-                                    //IF PRODUCT IS HAVING RUNNING STATUS
-                                    if ($product_data->product_status == 'running') {
+                                    <div class="pull-right label label-info" style="height: 30px;padding-top: 9px;">
+                                        Projeto completo
+                                    </div>
 
 
-                                        //IF LOGGED IN USER IS BIDDER OF THIS BID AND BID STATUS IS REGULAR
-                                        if (($bid->bidder_id == $_SESSION['user_id']) && ($bid->status == 'Regular')) {
-                                            ?>
-                                            <a class="btn btn-primary" href="#bid" onclick="showBid()">Editar</a>
-                                            <a class="bidRemove" onclick="return confirm('Tem certeza que deseja deletar esse lance?')"
-                                               href="<?php echo base_url() . 'bid/delete/' . $bid->bid_id; ?>">
-                                                <i class="glyphicon glyphicon-remove text-danger"></i></a>
-
-
-                                            <?php
-                                        }
-                                    } else if ($product_data->product_status == 'waiting') {
-
-
-                                        //IF LOGGED IN USER IS BIDDER OF THIS BID AND BID STATUS IS WAITING
-                                        if (($bid->bidder_id == $_SESSION['user_id']) && ($bid->status == 'Waiting')) {
-                                            ?>
-                                            <a class="btn btn-warning" onclick="return confirm('Tem certeza que deseja ACEITAR este lance?')"
-                                               href="<?php echo base_url() . 'bid/confirm/' . $bid->bid_id; ?>">Confirmar</a>
-                                            <a class="btn btn-default" href="<?php echo base_url() . 'bid/cancel/' . $bid->bid_id; ?>"
-                                               onclick="return confirm('Tem certeza que deseja cancelar este lance?')">Cancelar</a>
-
-
-                                            <?php
-                                        }
-                                    } else if ($product_data->product_status == 'awarded') {
-                                        ?>
-
-
-                                        <div class="label label-success">Aceito</div>
-                                        <?php
-                                        if (($bid->bidder_id == $_SESSION['user_id'])) {
-
-                                            if ($product_transaction_status == 'payment_sent') {
-                                                ?>
-                                                <div class="label label-info">Pagamento enviado</div>
-
-                                                <?php
-                                            }
-                                            if ($product_transaction_status == 'payment_received') {
-                                                ?>
-                                                <div class="label label-info">Pagamento recebido</div>
-                                                <?php
-                                            }
-                                            if ($product_data->transaction_status == 'product_sent') {
-                                                ?>
-                                                <div class="label label-info">Produto enviado</div>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-
-
-
-                                        <?php
-                                    } else if ($product_data->product_status == 'completed') {
-                                        ?>
-
-
-                                        <div class="pull-right label label-info" style="height: 30px;padding-top: 9px;">
-                                            Projeto completo
-                                        </div>
-
-
-                                        <?php
-                                    }
+                                <?php
                                 }
-                                ?>
+                            }
+                            ?>
 
 
-                            </td>
-                        </tr>
-                        <?php
-                    }
+                        </td>
+                    </tr>
+                <?php
                 }
-                ?>
+            }
+            ?>
             </tbody>
 
         </table>
 
-        <?php
+    <?php
     }
 }
 
@@ -215,7 +215,7 @@ if (!empty($bids)) {
  * User Interaction and Message Display
  */
 if ($this->auth->logged_in) {
-        
+
     if ($bidder_id == $_SESSION['user_id']) {
 
         if ($bid_status == 'Awarded') {
@@ -227,7 +227,7 @@ if ($this->auth->logged_in) {
                         Você confirmou o negócio com o vendedor. Por favor, discuta com o comprador sobre o método de pagamento. Você será notificado quando o comprador enviar o pagamento.
                     </p>
                 </div>
-                <?php
+            <?php
             }
 
 
@@ -243,7 +243,7 @@ if ($this->auth->logged_in) {
                             Pagamento recebido</a>
                     </p>
                 </div>
-                <?php
+            <?php
             }
 
 
@@ -254,7 +254,7 @@ if ($this->auth->logged_in) {
                         Você enviou o produto ao comprador. Após o recebimento do produto pelo comprador você será informado.
                     </p>
                 </div>
-                <?php
+            <?php
             }
         }
 
@@ -266,7 +266,7 @@ if ($this->auth->logged_in) {
                     Você enviou o produto ao comprador. Este projeto será fechado assim que o comprador confirmar o recebimento do produto.
                 </p>
             </div>
-            <?php
+        <?php
         }
     }
 
@@ -279,12 +279,12 @@ if ($this->auth->logged_in) {
             </p>
             <p>Após enviar o produto por favor clique no botão abaixo para confirmar o envio.</p>
             <p>
-                <a class="btn btn-primary" onclick="return confirm('Tem certeza que enviou o produto?');" 
+                <a class="btn btn-primary" onclick="return confirm('Tem certeza que enviou o produto?');"
                    href="<?php echo base_url() . 'product/update_product_transaction_status/product_sent/' . $product_data->product_id; ?>">
                     Produto enviado</a>
             </p>
         </div>
-        <?php
+    <?php
     }
 }
 
@@ -344,6 +344,6 @@ if ($this->auth->logged_in && $this->auth->is_active && $_SESSION['user_id'] == 
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 ?>

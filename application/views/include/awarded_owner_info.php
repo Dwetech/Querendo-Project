@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $sellerData = $this->user_model->get_user_by_id($awardedUser);
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -37,58 +37,58 @@
 
             <table class="table table-striped noBorder">
                 <thead>
-                    <tr class="tableHead">
-                        <th>Produto</th>
-                        <th class="text-center">Total de lances</th>
-                        <th class="text-center">Lance médio</th>
-                        <th class="text-center">Maior lance</th>
-                        <th class="text-center">Data</th>
-                        <th class="text-center">Situação</th>
-                    </tr>
+                <tr class="tableHead">
+                    <th>Produto</th>
+                    <th class="text-center">Total de lances</th>
+                    <th class="text-center">Lance médio</th>
+                    <th class="text-center">Maior lance</th>
+                    <th class="text-center">Data</th>
+                    <th class="text-center">Situação</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if (!empty($bids)) {
-                        foreach ($bids as $bid) {
-                            ?>
-                            <tr>
-                                <td><a href="<?php echo base_url() . 'product/view/' . $bid->product_id; ?>"><?php echo $bid->name; ?></a></td>
-                                <td class="text-center"><?php
-                                    $product_count = Bids_model::count_bid_by_product($bid->product_id);
-                                    echo $product_count->count_product;
-                                    ?></td>
-                                <td class="text-center"><?php
-                                    $average_bid = Bids_model::average_bid_by_product($bid->product_id);
-                                    echo intval($average_bid->avg_bid);
-                                    ?></td>
-                                <td class="text-center"><?php
-                                    $highest_bid = Bids_model::highetst_bid_by_product($bid->product_id);
-                                    echo $highest_bid->max_bid;
-                                    ?></td>
-                                <td class="text-center"><?php echo $bid->bid_create_date; ?></td>
-                                <td class="text-center">
-                                    <?php
-                                    if ($bid->bid_status == 'Completed')
-                                        $label = 'label label-success';
-                                    else if ($bid->bid_status == 'Awarded')
-                                        $label = 'label label-primary';
-                                    else if ($bid->bid_status == 'Waiting')
-                                        $label = 'label label-warning';
-                                    else if ($bid->bid_status == 'Regular')
-                                        $label = 'label label-default';
-                                    ?>
-                                    <div class="<?php echo $label; ?>"><?php echo $bid->bid_status; ?></div>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                    } else {
+                <?php
+                if (!empty($bids)) {
+                    foreach ($bids as $bid) {
                         ?>
                         <tr>
-                            <td style="text-align: center" colspan="6"> Não há ofertas </td>
+                            <td><a href="<?php echo base_url() . 'product/view/' . $bid->product_id; ?>"><?php echo $bid->name; ?></a></td>
+                            <td class="text-center"><?php
+                                $product_count = Bids_model::count_bid_by_product($bid->product_id);
+                                echo $product_count->count_product;
+                                ?></td>
+                            <td class="text-center"><?php
+                                $average_bid = Bids_model::average_bid_by_product($bid->product_id);
+                                echo "R$".number_format((float)intval($average_bid->avg_bid), 2, '.', '');
+                                ?></td>
+                            <td class="text-center"><?php
+                                $highest_bid = Bids_model::highetst_bid_by_product($bid->product_id);
+                                echo "R$".number_format((float)$highest_bid->max_bid, 2, '.', '');
+                                ?></td>
+                            <td class="text-center"><?php echo $bid->bid_create_date; ?></td>
+                            <td class="text-center">
+                                <?php
+                                if ($bid->bid_status == 'Completed')
+                                    $label = 'label label-success';
+                                else if ($bid->bid_status == 'Awarded')
+                                    $label = 'label label-primary';
+                                else if ($bid->bid_status == 'Waiting')
+                                    $label = 'label label-warning';
+                                else if ($bid->bid_status == 'Regular')
+                                    $label = 'label label-default';
+                                ?>
+                                <div class="<?php echo $label; ?>"><?php echo $bid->bid_status; ?></div>
+                            </td>
                         </tr>
-                    <?php }
+                    <?php
+                    }
+                } else {
                     ?>
+                    <tr>
+                        <td style="text-align: center" colspan="6"> Não há ofertas </td>
+                    </tr>
+                <?php }
+                ?>
 
                 </tbody>
             </table>

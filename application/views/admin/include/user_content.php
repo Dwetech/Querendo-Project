@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Usuários
     </h1>
 </div>
@@ -49,8 +49,8 @@
 
                 <?php $buyerCountry = $this->user_model->getCountryCode($r->country); ?>
                 <td class="text-center"><span data-placement="left" title="<?php echo !empty($buyerCountry) ? $buyerCountry->name : ''; ?>" data-toggle="tooltip"
-                        class="sellerMap flag flag-<?php echo !empty($buyerCountry) ? strtolower($buyerCountry->iso_code_2) : ''; ?>"></span>
-                        </span>
+                                              class="sellerMap flag flag-<?php echo !empty($buyerCountry) ? strtolower($buyerCountry->iso_code_2) : ''; ?>"></span>
+                    </span>
                 </td>
 
                 <td class="text-center" width="100px">

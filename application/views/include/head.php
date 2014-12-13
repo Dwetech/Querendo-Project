@@ -9,6 +9,7 @@
 ?>
 
 
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title><?php echo $this->settings_model->data['website_name'] ?></title>
 <link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>resources/img/favicon.png"/>

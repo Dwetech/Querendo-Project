@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Alterar senha
     </h1>
 </div>

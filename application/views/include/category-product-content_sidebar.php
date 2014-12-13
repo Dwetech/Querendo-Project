@@ -1,12 +1,12 @@
-﻿<div class="category_sidebar">
+<div class="category_sidebar">
     <div class="categorySidebarList">
         <p>Categorias</p>
         <?php if (!empty($categoryParent)) {
             if ($categoryParent->level != 1) {
                 ?>
                 <a class="parentCategory"
-                   href="<?php echo base_url() . 'product/categories/' . $categoryParent->url ?>"><i class="fa fa-angle-left"></i> 
-                       <?php echo $categoryParent->cat_name ?></a>
+                   href="<?php echo base_url() . 'product/categories/' . $categoryParent->url ?>"><i class="fa fa-angle-left"></i>
+                    <?php echo $categoryParent->cat_name ?></a>
             <?php }
         } ?>
         <ul>

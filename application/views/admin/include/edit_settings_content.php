@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Editar configurações
     </h1>
 </div>
@@ -86,11 +86,11 @@
 
                 <div class="col-sm-8 col-md-offset-4">
 
-                <button type="submit" id="submit" name="submit" value="Submit"
-                        class="btn btn-primary">
-                    Salvar alterações
-                </button>
-                <a href="<?php echo base_url() ?>admin/website_settings"class="btn">Cancelar</a>
+                    <button type="submit" id="submit" name="submit" value="Submit"
+                            class="btn btn-primary">
+                        Salvar alterações
+                    </button>
+                    <a href="<?php echo base_url() ?>admin/website_settings"class="btn">Cancelar</a>
                 </div>
             </div>
         </div>

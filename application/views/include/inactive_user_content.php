@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 
-/* 
+/*
     Created on : Jun 15, 2014, 5:41:53 PM
     Author        : me@rafi.pro
     Name         : Mohammad Faozul Azim Rafi

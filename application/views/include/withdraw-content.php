@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -45,33 +45,33 @@
     </div>
 
     <?php if(!empty($withdraw)){ ?>
-    <table class="table table-striped noBorder">
-        <thead class="tableHead">
-        <th>Requested at</th>
-        <th>Amount</th>
-        <th width="400px">Details</th>
-        <th class="text-center">Status</th>
-        <th class="text-center">Processing Date</th>
-        </thead>
-        <tbody>
-        <?php foreach($withdraw as $w){
+        <table class="table table-striped noBorder">
+            <thead class="tableHead">
+            <th>Requested at</th>
+            <th>Amount</th>
+            <th width="400px">Details</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Processing Date</th>
+            </thead>
+            <tbody>
+            <?php foreach($withdraw as $w){
 
 
-        $w->status == 'pending' ? $classCss = 'info' : '';
-        $w->status == 'success' ? $classCss = 'success' : '';
-        $w->status == 'hold' ? $classCss = 'danger' : '';
-        $w->status == 'cancel' ? $classCss = 'default' : '';
-        ?>
-            <tr>
-                <td><span class="label label-info"><?php echo $w->method ?></span></td>
-                <td><b>$<?php echo $w->amount ?></b></td>
-                <td><?php echo $w->details ?></td>
-                <td class="text-center"><span class="label label-<?php echo $classCss ?>"><?php echo $w->status ?></span></td>
-                <td class="text-center"><?php echo date("d M, Y", strtotime($w->create_date)) . ' at ' . date("g:i a", strtotime($w->create_date)); ?></td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+                $w->status == 'pending' ? $classCss = 'info' : '';
+                $w->status == 'success' ? $classCss = 'success' : '';
+                $w->status == 'hold' ? $classCss = 'danger' : '';
+                $w->status == 'cancel' ? $classCss = 'default' : '';
+                ?>
+                <tr>
+                    <td><span class="label label-info"><?php echo $w->method ?></span></td>
+                    <td><b>$<?php echo number_format((float)$w->amount, 2, '.', '') ?></b></td>
+                    <td><?php echo number_format((float)$w->details, 2, '.', '') ?></td>
+                    <td class="text-center"><span class="label label-<?php echo $classCss ?>"><?php echo $w->status ?></span></td>
+                    <td class="text-center"><?php echo date("d M, Y", strtotime($w->create_date)) . ' at ' . date("g:i a", strtotime($w->create_date)); ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
     <?php } else {
         echo '<h4 class="alert alert-info text-center">There is no withdrawal request</h4>';
     } ?>

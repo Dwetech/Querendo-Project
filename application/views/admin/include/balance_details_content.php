@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Detalhes de balanço
     </h1>
 </div>
@@ -30,9 +30,9 @@
                     <td class="text-center text-large"><span class="label label-success">$<?php echo $balance->amount; ?></span></td>
                     <td>
                         Um pagamento de <b><a target="_blank"
-                                             href="<?php echo base_url() ?>user/view/<?php echo $milestone->from_name; ?>"><?php echo $milestone->from_name; ?></a></b>
+                                              href="<?php echo base_url() ?>user/view/<?php echo $milestone->from_name; ?>"><?php echo $milestone->from_name; ?></a></b>
                         para <b><a target="_blank"
-                                 href="<?php echo base_url() ?>user/view/<?php echo $milestone->to_name ?>"><?php echo $milestone->to_name ?></a></b>
+                                   href="<?php echo base_url() ?>user/view/<?php echo $milestone->to_name ?>"><?php echo $milestone->to_name ?></a></b>
 
                         de <b>$<?php echo $milestone->amount; ?></b> <?php echo $milestone->status; ?> by <b><a
                                 target="_blank"

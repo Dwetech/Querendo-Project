@@ -1,4 +1,4 @@
-﻿<?php //echo $this->session->flashdata('error_balance') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_balance') . '</div>' : '';    ?>
+<?php //echo $this->session->flashdata('error_balance') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_balance') . '</div>' : '';    ?>
 
 
 <div class="user_milestone">
@@ -8,10 +8,10 @@
         if ($invoice_data) {
             ?>
             <div class='alert alert-warning'>
-                Você deve pagar R$<?php echo $invoice_data->payment; ?> para o Querendo. Este é o único modo de receber confiança para futuros negócios.
+                Você deve pagar R$<?php echo number_format((float)$invoice_data->payment, 2, '.', ''); ?> para o Querendo. Este é o único modo de receber confiança para futuros negócios.
             </div>
-        <a href="#" class="btn btn-primary">Pagar agora</a>
-            <?php
+            <a href="<?php echo base_url('invoice/pay/'.$invoice_data->invoice_id) ?>" class="btn btn-primary">Pagar agora</a>
+        <?php
         }
         ?>
     </div>
@@ -26,7 +26,7 @@
 
     <?php //echo $this->session->flashdata('error_milestone') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_milestone') . '</div>' : ''; ?>
 
-<!--    <div style="<?php //echo $this->session->flashdata('error_milestone') ? '' : 'display:none';    ?>" id="milestoneForm" class="milestoneForm">
+    <!--    <div style="<?php //echo $this->session->flashdata('error_milestone') ? '' : 'display:none';    ?>" id="milestoneForm" class="milestoneForm">
         <form method="post" action="<?php //echo base_url() . 'milestone/create';    ?>" >
             <div class="col-md-4">
                 <div class="form-group has-feedback <?php //echo $this->session->flashdata('amount') ? 'has-error' : '';    ?>">

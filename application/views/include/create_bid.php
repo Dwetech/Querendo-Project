@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
   Created on : Jun 5, 2014, 1:28:21 PM
   Author        : me@rafi.pro

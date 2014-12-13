@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 
-/* 
+/*
     Created on : Jun 5, 2014, 3:42:18 PM
     Author        : me@rafi.pro
     Name         : Mohammad Faozul Azim Rafi
@@ -16,9 +16,9 @@
 ?>
 <?php echo $this->session->flashdata('error') ? '<div class="alert alert-danger">' . $this->session->flashdata('error') . '</div>' : ''; ?>
 <div style="display: none" class="bidOption">
-    
-    
-    
+
+
+
     <div class="col-md-12">
         <form action="<?php echo base_url('bid/update/'.$this->uri->segment('3')); ?>" enctype="multipart/form-data" method="POST">
             <div class="bidForm">
@@ -30,7 +30,7 @@
                         <div class="form-group <?php echo $this->session->flashdata('bid_amount') ? 'has-error' : '' ?> has-feedback">
                             <label for="">Valor :</label>
                             <input pattern="\d*" type="text" name="bid_amount" class="form-control bidFeed" id="bid"
-                                   placeholder="Pago à você" value="<?php echo $my_bid->bid_amount ? $my_bid->bid_amount : ''; ?>">
+                                   placeholder="Pago à você" value="<?php echo $my_bid->bid_amount ? number_format((float)$my_bid->bid_amount, 2, '.', '') : ''; ?>">
 
                             <span class="custom-feedback-left text-feedback">R$</span>
                             <span class="custom-feedback-right text-feedback">Reais</span>
@@ -78,7 +78,7 @@
 
                                     </span>
                                     Você receberá :
-                                    <span class="normalAsh mar-left-small">R$<span id="milePercent"><?php echo ($my_bid->bid_amount-$my_bid->bid_amount*(0.1)); ?></span> Reais</span>
+                                    <span class="normalAsh mar-left-small">R$<span id="milePercent"><?php echo number_format((float)($my_bid->bid_amount-$my_bid->bid_amount*(0.1)), 2, '.', ''); ?></span> Reais</span>
 
                                 </label>
                                 <input type="hidden" name="querendo" id="querendo" value=""/>

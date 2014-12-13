@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: Ridwanul Hafiz
@@ -11,26 +11,7 @@
     echo "<hr>".$this->auth->user_data->profile_pic;
 echo "</pre>";*/
 ?>
-<script>
-	function CEP(){
-		$.getJSON(baseurl + 'cep.php?cep=' + $('#postal_code').val() , function (dados){
-			if (dados['resultado'] == '1'){
-				$('#address').val(dados['tipo_logradouro'] + ' ' + dados['logradouro'] + ', nº\n' + dados['bairro']);
-				$('#city').val(dados['cidade']);
-				$('#state option[value="' + dados['uf'] + '"]').attr({ 'selected' : 'selected' });
-				$('#country option[value="30"]').attr({ 'selected' : 'selected' });
 
-
-
-
-			}
-
-
-			
-							
-		});
-	}
-</script>
 <div class="user-settings-section">
 
     <div class="user-settings-form">
@@ -42,7 +23,7 @@ echo "</pre>";*/
         <div class="form-group <?php echo form_error('first_name') ? 'has-error' : '' ?>">
             <label for="firstName" class="col-sm-4 control-label">Nome: </label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="first_name" id="firstName" placeholder="Nome" 
+                <input type="text" class="form-control" name="first_name" id="firstName" placeholder="Nome"
                        value="<?php echo set_value('first_name') ? set_value('first_name') : $user->first_name; ?>">
                 <span class="text-danger"><?php echo form_error('first_name'); ?></span>
             </div>
@@ -57,28 +38,19 @@ echo "</pre>";*/
             </div>
         </div>
 
-		<div class="form-group <?php echo form_error('postal_code') ? 'has-error' : '' ?>">
-            <label for="postal_code" class="col-sm-4 control-label">Código postal: </label>
-            <div class="col-sm-8">
-                <input onchange="CEP();" type="text" class="form-control" name="postal_code" id="postal_code" class="postal_code" placeholder="Código postal"
-                       value="<?php echo set_value('postal_code') ? set_value('postal_code') : $user->postal_code; ?>">
-                <span class="text-danger"><?php echo form_error('postal_code'); ?></span>
-            </div>
-        </div>
-
         <div class="form-group <?php echo form_error('contact_address') ? 'has-error' : '' ?>">
             <label for="address" class="col-sm-4 control-label">Endereço: </label>
             <div class="col-sm-8">
-                <textarea class="form-control" name="contact_address" id="address" placeholder="Endereço" 
-                          ><?php echo set_value('contact_address') ? set_value('contact_address') : $user->contact_address; ?></textarea>
+                <textarea class="form-control" name="contact_address" id="address" placeholder="Endereço de contato"
+                    ><?php echo set_value('contact_address') ? set_value('contact_address') : $user->contact_address; ?></textarea>
                 <span class="text-danger"><?php echo form_error('contact_address'); ?></span>
             </div>
         </div>
-<!--
+        <!--
         <div class="form-group <?php echo form_error('shipping_address') ? 'has-error' : '' ?>">
             <label for="address" class="col-sm-4 control-label">Endereço: </label>
             <div class="col-sm-8">
-                <textarea class="form-control" name="shipping_address" id="address" placeholder="Endereço de cobrança" 
+                <textarea class="form-control" name="shipping_address" id="address" placeholder="Endereço de cobrança"
                           ><?php echo set_value('shipping_address') ? set_value('shipping_address') : $user->shipping_address; ?></textarea>
                 <span class="text-danger"><?php echo form_error('shipping_address'); ?></span>
             </div>
@@ -92,15 +64,15 @@ echo "</pre>";*/
                 <span class="text-danger"><?php echo form_error('contact_number'); ?></span>
             </div>
         </div>
-        
-        <!--<div class="form-group <?php echo form_error('fax') ? 'has-error' : '' ?>">
+
+        <div class="form-group <?php echo form_error('fax') ? 'has-error' : '' ?>">
             <label for="fax" class="col-sm-4 control-label">Fax: </label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="fax" id="fax" placeholder="Fax"
                        value="<?php echo set_value('fax') ? set_value('fax') : $user->fax; ?>">
                 <span class="text-danger"><?php echo form_error('fax'); ?></span>
             </div>
-        </div>-->
+        </div>
 
         <div class="form-group <?php echo form_error('city') ? 'has-error' : '' ?>">
             <label for="city" class="col-sm-4 control-label">Cidade: </label>
@@ -111,63 +83,33 @@ echo "</pre>";*/
             </div>
         </div>
 
-        <!--<div class="form-group <?php echo form_error('state') ? 'has-error' : '' ?>">
+        <div class="form-group <?php echo form_error('state') ? 'has-error' : '' ?>">
             <label for="state" class="col-sm-4 control-label">Estado: </label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="state" id="state" placeholder="Estado"
                        value="<?php echo set_value('state') ? set_value('state') : $user->state; ?>">
                 <span class="text-danger"><?php echo form_error('state'); ?></span>
             </div>
-        </div>-->
-        
-        <div class="form-group <?php echo form_error('state') ? 'has-error' : '' ?>">
-        	<label for="state" class="col-sm-4 control-label">Estado: </label>
-	        <div class="col-sm-8">
-	            <select class="form-control" name="state" id="state">
-	            	<option value="estado">Selecione o Estado</option>
-					<option value="AC" <?php echo $user->state == "AC" ? 'selected="selected"' : ''; ?>>Acre</option>
-					<option value="AL" <?php echo $user->state == "AL" ? 'selected="selected"' : ''; ?>>Alagoas</option>
-					<option value="AM" <?php echo $user->state == "AM" ? 'selected="selected"' : ''; ?>>Amazonas</option>
-					<option value="AP" <?php echo $user->state == "AP" ? 'selected="selected"' : ''; ?>>Amapá</option>
-					<option value="BA" <?php echo $user->state == "BA" ? 'selected="selected"' : ''; ?>>Bahia</option>
-					<option value="CE" <?php echo $user->state == "CE" ? 'selected="selected"' : ''; ?>>Ceará</option>
-					<option value="DF" <?php echo $user->state == "DF" ? 'selected="selected"' : ''; ?>>Distrito Federal</option>
-					<option value="ES" <?php echo $user->state == "ES" ? 'selected="selected"' : ''; ?>>Espírito Santo</option>
-					<option value="GO" <?php echo $user->state == "GO" ? 'selected="selected"' : ''; ?>>Goiás</option>
-					<option value="MA" <?php echo $user->state == "MA" ? 'selected="selected"' : ''; ?>>Maranhão</option>
-					<option value="MT" <?php echo $user->state == "MT" ? 'selected="selected"' : ''; ?>>Mato Grosso</option>
-					<option value="MS" <?php echo $user->state == "MS" ? 'selected="selected"' : ''; ?>>Mato Grosso do Sul</option>
-					<option value="MG" <?php echo $user->state == "MG" ? 'selected="selected"' : ''; ?>>Minas Gerais</option>
-					<option value="PA" <?php echo $user->state == "PA" ? 'selected="selected"' : ''; ?>>Pará</option>
-					<option value="PB" <?php echo $user->state == "PB" ? 'selected="selected"' : ''; ?>>Paraíba</option>
-					<option value="PR" <?php echo $user->state == "PR" ? 'selected="selected"' : ''; ?>>Paraná</option>
-					<option value="PE" <?php echo $user->state == "PE" ? 'selected="selected"' : ''; ?>>Pernambuco</option>
-					<option value="PI" <?php echo $user->state == "PI" ? 'selected="selected"' : ''; ?>>Piauí</option>
-					<option value="RJ" <?php echo $user->state == "RJ" ? 'selected="selected"' : ''; ?>>Rio de Janeiro</option>
-					<option value="RN" <?php echo $user->state == "RN" ? 'selected="selected"' : ''; ?>>Rio Grande do Norte</option>
-					<option value="RO" <?php echo $user->state == "RO" ? 'selected="selected"' : ''; ?>>Rondônia</option>
-					<option value="RS" <?php echo $user->state == "RS" ? 'selected="selected"' : ''; ?>>Rio Grande do Sul</option>
-					<option value="RR" <?php echo $user->state == "RR" ? 'selected="selected"' : ''; ?>>Roraima</option>
-					<option value="SC" <?php echo $user->state == "SC" ? 'selected="selected"' : ''; ?>>Santa Catarina</option>
-					<option value="SE" <?php echo $user->state == "SE" ? 'selected="selected"' : ''; ?>>Sergipe</option>
-					<option value="SP" <?php echo $user->state == "SP" ? 'selected="selected"' : ''; ?>>São Paulo</option>
-					<option value="TO" <?php echo $user->state == "TO" ? 'selected="selected"' : ''; ?>>Tocantins</option>
-					<?php echo form_error('state') ? '<span class="text-danger">' . form_error('state') . '</span>' : '' ?>
-				</select>
-			</div>
-		</div>
-		
-        
+        </div>
+
+        <div class="form-group <?php echo form_error('postal_code') ? 'has-error' : '' ?>">
+            <label for="postal_code" class="col-sm-4 control-label">Código postal: </label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="Código postal"
+                       value="<?php echo set_value('postal_code') ? set_value('postal_code') : $user->postal_code; ?>">
+                <span class="text-danger"><?php echo form_error('postal_code'); ?></span>
+            </div>
+        </div>
 
         <div class="form-group <?php echo form_error('country') ? 'has-error' : '' ?>">
             <label for="country" class="col-sm-4 control-label">País: </label>
             <div class="col-sm-8">
-                <select name="country" id="country" class="form-control">
+                <select name="country" class="form-control">
                     <option value="">----Selecionar país----</option>
                     <?php foreach ($country as $cntry) { ?>
-                        <option value="<?php echo $cntry->country_id; ?>" <?php echo set_select('country', $cntry->country_id); ?> 
-                                <?php echo $user->country == $cntry->country_id ? 'selected="selected"' : ''; ?>><?php echo $cntry->name; ?></option>
-                            <?php } ?>
+                        <option value="<?php echo $cntry->country_id; ?>" <?php echo set_select('country', $cntry->country_id); ?>
+                            <?php echo $user->country == $cntry->country_id ? 'selected="selected"' : ''; ?>><?php echo $cntry->name; ?></option>
+                    <?php } ?>
                 </select>
                 <span class="text-danger"><?php echo form_error('country'); ?></span>
             </div>
@@ -182,25 +124,25 @@ echo "</pre>";*/
             </div>
         </div>
 
-        <!--<div class="form-group <?php echo form_error('time_zone') ? 'has-error' : '' ?>">
+        <div class="form-group <?php echo form_error('time_zone') ? 'has-error' : '' ?>">
             <label for="time_zone" class="col-sm-4 control-label">Fuso horário: </label>
             <div class="col-sm-8">
                 <select class="form-control" name="time_zone" id="time_zone">
                     <option value="">----Selecionar fuso horário----</option>
                     <?php foreach ($timezones as $timezone) { ?>
                         <option value="<?php echo $timezone->id; ?>" <?php echo $timezone->id == $user->timezone ? 'selected="selected"' : ''; ?>
-                                ><?php echo $timezone->name; ?></option>
-                            <?php } ?>
+                            ><?php echo $timezone->name; ?></option>
+                    <?php } ?>
                 </select>
                 <span class="text-danger"><?php echo form_error('time_zone'); ?></span>
             </div>
-        </div>-->
+        </div>
 
         <div class="form-group <?php echo form_error('about') ? 'has-error' : '' ?>">
             <label for="address" class="col-sm-4 control-label">Sobre mim: </label>
             <div class="col-sm-8">
-                <textarea class="form-control" rows="5" name="about" id="address" placeholder="Sobre mim" 
-                          ><?php echo set_value('about') ? set_value('about') : $user->about; ?></textarea>
+                <textarea class="form-control" rows="5" name="about" id="address" placeholder="Sobre mim"
+                    ><?php echo set_value('about') ? set_value('about') : $user->about; ?></textarea>
                 <span class="text-danger"><?php echo form_error('about'); ?></span>
             </div>
         </div>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * User: Ridwanul Hafiz
  * Date: 5/3/14
@@ -76,7 +76,7 @@
                         <li class="<?php echo $current=='dashboard' ? 'current' : ''; ?>"><a href="<?php echo base_url() . 'user/dashboard/' . $_SESSION['user_name']; ?>">Dashboard</a></li>
                         <li class="<?php echo $current=='myProduct' ? 'current' : ''; ?>"><a href="<?php echo base_url() . 'user/product/' ?>">Produtos</a></li>
                         <li class="<?php echo $current=='bidList' ? 'current' : ''; ?>"><a href="<?php echo base_url() . 'user/bids/' ?>">Ofertas</a></li>
-<!--                        <li class="<?php //echo $current=='finance' ? 'current' : ''; ?>">
+                        <!--                        <li class="<?php //echo $current=='finance' ? 'current' : ''; ?>">
                             <a href="<?php //echo base_url(); ?>finance">Finance</a>
                             <ul style="display: none" class="user-menu_drop">
                                 <li><a href="<?php //echo base_url(); ?>finance/deposit"><i class="glyphicon glyphicon-plus-sign mar-right-small"></i> Deposit Fund </a></li>

@@ -1,4 +1,4 @@
-﻿<div class="bidListDetails">
+<div class="bidListDetails">
 
     <?php
 

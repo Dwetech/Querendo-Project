@@ -1,9 +1,9 @@
-﻿<?php //echo $this->session->flashdata('error_balance') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_balance') . '</div>' : ''; ?>
+<?php //echo $this->session->flashdata('error_balance') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_balance') . '</div>' : ''; ?>
 
 
 <div class="user_milestone">
     <div class="alert alert-info">Converse com o ofertante sobre o produto e o método de pagamento.</div>
-<!--
+    <!--
 >>>>>>>>>>>>>>>>>>v0.9<<<<<<<<<<<<<<<<<<<
 <div class="milestoneHead">
         <h3 class="pull-left">Milestones</h3>
@@ -14,7 +14,7 @@
 
     <?php //echo $this->session->flashdata('error_milestone') ? '<div class="alert alert-danger">' . $this->session->flashdata('error_milestone') . '</div>' : ''; ?>
 
-<!--    <div style="<?php //echo $this->session->flashdata('error_milestone') ? '' : 'display:none'; ?>" id="milestoneForm" class="milestoneForm">
+    <!--    <div style="<?php //echo $this->session->flashdata('error_milestone') ? '' : 'display:none'; ?>" id="milestoneForm" class="milestoneForm">
         <form method="post" action="<?php //echo base_url() . 'milestone/create'; ?>" >
             <div class="col-md-4">
                 <div class="form-group has-feedback <?php //echo $this->session->flashdata('amount') ? 'has-error' : ''; ?>">
@@ -47,7 +47,7 @@
     </div>
 >>>>>>>>>>>>>>>>v0.9<<<<<<<<<<<<<<<<<<<<<
 -->
-<!--
+    <!--
 >>>>>>>>>>>>>>v0.9<<<<<<<<<<<<<<<<<
 
 
@@ -61,15 +61,15 @@
         </thead>
         <tbody>
             <?php
-            //GET MILESTONE DATA BETWEEN PRODUCT OWNER AND ACCEPTED BIDDER
-            //$milestone_data = Milestone_model::get_milestone_by_product_and_user($product_id, $from_id, $to_id);
+    //GET MILESTONE DATA BETWEEN PRODUCT OWNER AND ACCEPTED BIDDER
+    //$milestone_data = Milestone_model::get_milestone_by_product_and_user($product_id, $from_id, $to_id);
 
 
-            //if (!empty($milestone_data)) {
+    //if (!empty($milestone_data)) {
 
 
-                //foreach ($milestone_data as $milestone) {
-                    ?>
+    //foreach ($milestone_data as $milestone) {
+    ?>
                     <tr class="<?php //echo $milestone->status == 'released' ? 'success' : ''; ?>">
                         <td><?php //echo $milestone->amount; ?></td>
                         <td><?php //echo $milestone->description; ?></td>
@@ -92,7 +92,7 @@
                                             </li>
                                         <?php //} ?>
                                         <li class="text-small text-left">
-                                            <a onclick="return confirm('Are you sure you want to RELEASE this milestone?');" 
+                                            <a onclick="return confirm('Are you sure you want to RELEASE this milestone?');"
                                                href="<?php //echo base_url() . 'milestone/release/' . $milestone->id; ?>">Release</a>
                                         </li>
                                         <li class="text-small text-left">
@@ -108,13 +108,13 @@
                         </td>
                     </tr>
                     <?php
-                    /*$data['milestone_id'] = $milestone->id;
-                    $data['product_id'] = $product_id;
-                    $data['awarded_user'] = $awardedUser;
-                    $this->load->view('include/cancel_milestone-modal', $data);
-                }
-            }*/
-            ?>
+    /*$data['milestone_id'] = $milestone->id;
+    $data['product_id'] = $product_id;
+    $data['awarded_user'] = $awardedUser;
+    $this->load->view('include/cancel_milestone-modal', $data);
+}
+}*/
+    ?>
         </tbody>
     </table>
     <hr>
@@ -134,13 +134,13 @@
 
 <script type="text/javascript">
     /**
-    function showMilestone() {
+     function showMilestone() {
         $('#milestoneForm').show();
         $('#milestoneTrigger').hide();
     }
-    function hideMilestone() {
+     function hideMilestone() {
         $('#milestoneForm').hide();
         $('#milestoneTrigger').show();
     }
-            **/
+     **/
 </script>

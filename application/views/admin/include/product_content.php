@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Produtos
     </h1>
 </div>
@@ -20,14 +20,14 @@
         </div>
         <div class="col-md-7 noPadding">
             <div class="col-md-6">
-                    <div class="col-sm-9">
-                        <input type="text" placeholder="Buscar produto" class="form-control"
-                               name="searchData" value="<?php echo $searchData; ?>">
-                    </div>
-                    <div class="col-sm-3 noPadding">
-                        <button class="btn btn-success pull-right" value="Submit" name="submit" type="submit">Buscar
-                        </button>
-                    </div>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Buscar produto" class="form-control"
+                           name="searchData" value="<?php echo $searchData; ?>">
+                </div>
+                <div class="col-sm-3 noPadding">
+                    <button class="btn btn-success pull-right" value="Submit" name="submit" type="submit">Buscar
+                    </button>
+                </div>
             </div>
         </div>
     </form>

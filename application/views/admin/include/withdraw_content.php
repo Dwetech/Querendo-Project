@@ -1,4 +1,4 @@
-﻿<div class="page-header">
+<div class="page-header">
     <h1>Solicitação de saque
     </h1>
 </div>
@@ -41,19 +41,19 @@
                 <td class="text-center"><?php echo date("d M, Y", strtotime($w->create_date)) . ' at ' . date("g:i a", strtotime($w->create_date)); ?></td>
                 <td class="text-center">
                     <?php if($w->status != 'cancel' && $w->status != 'success'){ ?>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            Ação <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu custom_action" role="menu">
-                            <li>
-                                <a href="<?php echo base_url(); ?>admin/withdraw/change_status/pending/<?php echo $w->withdraw_id; ?>">Pendente</a>
-                                <a href="<?php echo base_url(); ?>admin/withdraw/change_status/success/<?php echo $w->withdraw_id; ?>">Sucesso</a>
-                                <a href="<?php echo base_url(); ?>admin/withdraw/change_status/hold/<?php echo $w->withdraw_id; ?>">Preso</a>
-                                <a href="<?php echo base_url(); ?>admin/withdraw/change_status/cancel/<?php echo $w->withdraw_id; ?>">Cancelar</a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                Ação <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu custom_action" role="menu">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>admin/withdraw/change_status/pending/<?php echo $w->withdraw_id; ?>">Pendente</a>
+                                    <a href="<?php echo base_url(); ?>admin/withdraw/change_status/success/<?php echo $w->withdraw_id; ?>">Sucesso</a>
+                                    <a href="<?php echo base_url(); ?>admin/withdraw/change_status/hold/<?php echo $w->withdraw_id; ?>">Preso</a>
+                                    <a href="<?php echo base_url(); ?>admin/withdraw/change_status/cancel/<?php echo $w->withdraw_id; ?>">Cancelar</a>
+                                </li>
+                            </ul>
+                        </div>
                     <?php } ?>
                 </td>
             </tr>

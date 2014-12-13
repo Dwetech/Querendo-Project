@@ -1,4 +1,4 @@
-﻿<?php if (!empty($runningWork)) { ?>
+<?php if (!empty($runningWork)) { ?>
     <div class="activity-table">
         <table class="table table-striped noBorder">
             <thead>

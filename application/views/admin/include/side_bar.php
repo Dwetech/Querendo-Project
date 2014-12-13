@@ -1,4 +1,4 @@
-﻿<div class="side_bar">
+<div class="side_bar">
 
     <ul>
         <li><a class="current" href="<?php echo base_url(); ?>admin"><i class="glyphicon glyphicon-dashboard margin-small"></i> Dashboard</a></li>

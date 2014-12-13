@@ -1,4 +1,4 @@
-﻿<div class="col-md-12">
+<div class="col-md-12">
 
     <div class="page-header">
         <h3>
@@ -67,10 +67,10 @@
                                             <td width="150px" class="text-center"><?php echo $p->create_date; ?></td>
                                             <td width="150px" class="text-center">
                                                 <?php if($p->budget_type == 'fixed'){ ?>
-                                                <b><?php echo "$" . $p->fixed_budget; ?></b></td>
-                                                <?php } else { ?>
-                                                <b><?php echo "$" . $p->min_budget . " - $" . $p->max_budget; ?></b></td>
-                                                <?php } ?>
+                                                <b><?php echo "$" . number_format((float)$p->fixed_budget, 2, '.', ''); ?></b></td>
+                                            <?php } else { ?>
+                                                <b><?php echo "$" . number_format((float)$p->min_budget, 2, '.', '') . " - $" . number_format((float)$p->max_budget, 2, '.', ''); ?></b></td>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
