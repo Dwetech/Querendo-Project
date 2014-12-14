@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*
   Created on : May 24, 2014, 3:46:39 PM

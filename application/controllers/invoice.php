@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*
   Created on : Aug 9, 2014, 6:27:27 PM
@@ -53,6 +53,24 @@ class Invoice extends CI_Controller {
         //Current active menu name
         $data['current'] = 'invoice';
         $this->load->view('invoice_view', $data);
+    }
+
+    function pay($invoice_id) {
+        if( !isset($invoice_id) ) {
+            redirect('invoice');
+        }
+
+        $invoice = $this->invoice_model->getFullDetails($invoice_id);
+
+        if( !$invoice ) {
+            redirect('invoice');
+        }
+
+        //Current active menu name
+        $data['current'] = 'invoice';
+        $data['invoice'] = $invoice;
+        $this->load->view('invoice_payment_form', $data);
+
     }
 
 }

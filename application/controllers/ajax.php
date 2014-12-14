@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * Created by N0B0DY.
@@ -194,10 +194,6 @@ class Ajax extends CI_Controller {
         return;
 
 
-    }
-
-    function test(){
-        echo preg_replace('/^\w{5,}$/', '', 'à¦®à§à¦¹à¦¾à¦®à§à¦®à¦¦ à¦¤à¦¾à¦°à¦¿à¦• à¦¹à¦¾à¦¸à¦¾à¦¨');
     }
 
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * Created by N0B0DY.
@@ -71,7 +71,7 @@ class Login extends CI_Controller {
         $message = 'Clique aqui para ativar sua conta <a href="' . base_url() . 'signup/activate_account/' . $verification_code . '">Ativar conta</a>';
 
 
-        send_email('admin@dwetech.com', urldecode($email), $message, 'Ative sua conta');
+        send_email('noreply@querendo.com.br', urldecode($email), $message, 'Ative sua conta');
         $flashdata = array(
             'success' => 'Nós lhe enviamos um e-mail de verificação!',
             'message' => 'Você deve receber um e-mail contendo um link, por favor, clique neste link para ativar sua conta!',

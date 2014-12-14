@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * Created by N0B0DY.

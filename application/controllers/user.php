@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -86,6 +86,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('contact_number', 'Telefone de contato', 'required|trim|xss_clean|strip_tags');
             $this->form_validation->set_rules('fax', 'Fax', 'trim|xss_clean|strip_tags');
             $this->form_validation->set_rules('profile_pic', 'Imagem', 'required|trim|xss_clean|strip_tags');
+
 
             if ($this->form_validation->run() == FALSE) {
                 $data['error'] = 'Por favor, cheque o(s) seguinte(s) erro(s)!';

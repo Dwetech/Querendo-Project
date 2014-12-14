@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -546,6 +546,7 @@ class Product extends CI_Controller {
          */
         $fee_percent = $this->settings_model->getSettings('fee_percent');
         $payment = ($fee_percent / 100) * $data['bid_status']->bid_amount;
+        $payment = toCurrency($payment);
         $insert_data = array(
             'user_id' => $data['bid_status']->user_id,
             'product_id' => $product_id,

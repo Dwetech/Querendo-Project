@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * Created by N0B0DY.
@@ -44,7 +44,8 @@ class Signup extends CI_Controller {
                     $data['error'] = 'Ocorreu um problema ao enviar seus dados! Por favor, tente novamente.';
                 } else {
                     $message = 'Clique neste link para ativar sua conta <a href="' . base_url() . 'signup/activate_account/' . $verification_code . '">Ativar conta</a>';
-                    send_email('admin@dwetech.com', $email, $message, 'Ative sua conta');
+                    send_email('noreply@querendo.com.br', $email, $message, 'Ative sua conta');
+
 
                     $flashdata = array(
                         'success' => 'Parabéns! Seu cadastro está completo!',

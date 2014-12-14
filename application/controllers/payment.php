@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -11,18 +11,23 @@ class Payment extends CI_Controller {
 
     public function success() {
         $data['payment'] = 'success';
+        $data['current'] = 'invoice';
         $this->load->view('payment-view' , $data);
     }
     public function cancelled() {
         $data['payment'] = 'cancelled';
+        $data['current'] = 'invoice';
         $this->load->view('payment-view' , $data);
     }
 
     public function test() {
 
+        $this->load->model(array('payment_log_model','payments_model','balance_model','invoice_model'));
 
-        $leap = 2012 % 4;
-        print_r($leap);
+
+        $invoice_data = $this->invoice_model->get(3);
+
+        print_r($invoice_data);
 
     }
 
@@ -30,7 +35,7 @@ class Payment extends CI_Controller {
 
 
         $this->load->library('email');
-        $this->load->model(array('payment_log_model','payments_model','balance_model'));
+        $this->load->model(array('payment_log_model','payments_model','balance_model','invoice_model','user_model'));
         $this->load->helper('file');
 
 
@@ -65,7 +70,7 @@ class Payment extends CI_Controller {
 
         // Step 2: POST IPN data back to PayPal to validate
 
-        $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
+        $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -86,11 +91,10 @@ class Payment extends CI_Controller {
         }
         curl_close($ch);
 
-
-
         // inspect IPN validation result and act accordingly
 
         if (strcmp ($res, "VERIFIED") == 0) {
+
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             // check that txn_id has not been previously processed
@@ -111,14 +115,14 @@ class Payment extends CI_Controller {
 
 
             $payment_data = array(
-                'user_id' 	=> $item_number,
+                'invoice_id' 	=> $item_number,
                 'txn_id'  		=> $txn_id,
                 'item_name' 	=> $item_name,
                 'item_number' 	=> $item_number,
                 'mc_gross'  	=> $payment_amount,
                 'mc_currency' 	=> $payment_currency,
                 'payment_status'=> $myPost['payment_status'],
-                'mc_fee'		=> $myPost['mc_fee'],
+                'mc_fee'		=> isset($myPost['mc_fee']) ? $myPost['mc_fee'] : '',
                 'first_name'	=> $myPost['first_name'],
                 'last_name'		=> $myPost['last_name'],
                 'address_street'=> $myPost['address_street'],
@@ -130,50 +134,50 @@ class Payment extends CI_Controller {
                 'address_state'	=> $myPost['address_state'],
                 'receiver_email'=> $myPost['receiver_email'],
                 'payer_email'   => $payer_email,
-                'payment_date'	=> $myPost['payment_date'],
+                'payment_date'	=> $myPost['payment_date']
             );
 
             // Add all the IPN request (incomplete, pending, success etc) log in database
             $this->payment_log_model->add_payment_log($payment_data);
 
-
-            // Now we will look up into database if we have any pending canvas order
+            // Now we will look up into database if we have any invoice with given invoice id.
             // if we find any - we will match this paypal sent data with our own data.
-            $user_data = $this->user_model->get_user_by_id($item_number);
+            $invoice_data = $this->invoice_model->get($item_number);
+            $user_data    = $this->user_model->get_user_by_id($invoice_data->user_id);
+
 
             if(
-                $payment_currency 	== 'USD' || // currency match check
-                $receiver_email == $this->settings_model->data['paypal_email']  // reciever match check
+                $payment_currency 	== 'BRL' || // currency match check
+                $receiver_email == $this->settings_model->data['paypal_email']  // receiver match check
             ) {
                 // All ok - add this to payment table
-
-
-
-                if( strtolower($myPost['payment_status']) == 'completed' && $user_data ) {
+                if( strtolower($myPost['payment_status']) == 'completed' && $invoice_data  && $invoice_data->payment == $payment_amount ) {
 
                     // Add only Completed and verified payment in `payment` database
                     $payment_id = $this->payments_model->add_payment($payment_data);
 
                     // Now add balance to the `balance` table
                     // This will actually make user add more balance
-                    $balance_data = array(
-                        'user_id' => $user_data->id,
-                        'amount'  => $payment_amount,
-                        'type'    => 'credit',
-                        'description' => 'Credit by paypal payment (Payment id: '.$payment_id.')'
+                    $update_data = array(
+                        'status'  => 'paid'
                     );
-                    $this->balance_model->addBalance($balance_data);
+                    $this->invoice_model->update( $invoice_data->invoice_id, $update_data );
 
                     $this->email->initialize(array('mailtype'=>'html'));
                     $this->email->from($this->settings_model->data['website_email'], $this->settings_model->data['website_name']);
                     $this->email->to($user_data->email);
-                    $this->email->subject('Querendo - Your payment added successfully');
-                    $data['subject'] = 'Order successfully submitted';
-                    $data['message'] = '<p>Your payment has been added successfully. You can see your deposit and status
+                    $this->email->subject('Querendo - Your payment successful');
+                    $data['subject'] = 'Your payment for invoice '.$invoice_data->invoice_id.' successfully completed';
+                    $data['message'] = '<p>Your payment has been made successfully. You can see your invoice status
                     by <a href="'.base_url('login').'">Sign in</a> to your account.</p>
-                    <p>Here is your order details : - </p>
+                    <p>Here is your payment details : - </p>
                     <p>
                         <table>
+                        <tr>
+                                <th style="text-align: right">Invoice ID:</th>
+                                <td width="15"></td>
+                                <td>#'.$invoice_data->invoice_id.'</td>
+                            </tr>
                             <tr>
                                 <th style="text-align: right">Payment ID:</th>
                                 <td width="15"></td>
