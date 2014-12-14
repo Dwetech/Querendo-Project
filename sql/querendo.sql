@@ -1,12 +1,12 @@
 -- --------------------------------------------------------
--- Host:                         192.168.2.104
--- Server version:               5.5.38-0ubuntu0.14.04.1 - (Ubuntu)
--- Server OS:                    debian-linux-gnu
--- HeidiSQL Version:             8.3.0.4796
+-- Host:                         127.0.0.1
+-- Server version:               5.5.32 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.1.0.4867
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
@@ -82,9 +82,9 @@ CREATE TABLE IF NOT EXISTS `bids` (
   `product_condition` enum('New','Used','Any') CHARACTER SET latin1 DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table querendo.bids: ~10 rows (approximately)
+-- Dumping data for table querendo.bids: ~12 rows (approximately)
 DELETE FROM `bids`;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
 INSERT INTO `bids` (`id`, `product_id`, `user_id`, `bid_amount`, `delivery_time`, `milestone_request`, `product_image`, `proposal_text`, `status`, `product_condition`, `create_date`) VALUES
@@ -97,7 +97,9 @@ INSERT INTO `bids` (`id`, `product_id`, `user_id`, `bid_amount`, `delivery_time`
 	(9, 18, 1, 1088, 4, NULL, '70W6epz0.jpg', 'You will get paid : $1043.1 USD', 'Regular', 'New', '2014-08-09 16:01:30'),
 	(10, 18, 6, 1090, 2, NULL, '3HFdU8j5.jpg', 'asdf asdf asdf.', 'Completed', 'New', '2014-08-09 16:01:57'),
 	(11, 3, 1, 10, 2, NULL, 'bhdyhhnB.jpg', 'You will get paid : $9.5 USD', 'Regular', 'New', '2014-08-09 17:28:57'),
-	(12, 3, 3, 8, 2, NULL, '2zlGwcP4.jpg', ' You will get paid : $7.6 USD', 'Completed', 'New', '2014-08-09 17:29:28');
+	(12, 3, 3, 8, 2, NULL, '2zlGwcP4.jpg', ' You will get paid : $7.6 USD', 'Completed', 'New', '2014-08-09 17:29:28'),
+	(13, 14, 6, 12, 2, NULL, NULL, '', 'Completed', 'New', '2014-11-04 21:52:12'),
+	(14, 12, 7, 10, 10, NULL, NULL, 'Test', 'Regular', 'New', '2014-11-22 00:08:49');
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 
 
@@ -362,18 +364,19 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
-  `payment` float NOT NULL DEFAULT '0',
+  `payment` decimal(10,2) NOT NULL DEFAULT '0.00',
   `status` enum('paid','unpaid') NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`invoice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table querendo.invoice: ~2 rows (approximately)
+-- Dumping data for table querendo.invoice: ~3 rows (approximately)
 DELETE FROM `invoice`;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
 INSERT INTO `invoice` (`invoice_id`, `product_id`, `user_id`, `payment`, `status`, `create_date`) VALUES
-	(1, 18, 6, 54.5, 'unpaid', '2014-08-09 14:57:39'),
-	(2, 3, 3, 0.4, 'unpaid', '2014-08-09 15:13:08');
+	(1, 18, 6, 54.50, 'unpaid', '2014-08-09 14:57:39'),
+	(2, 3, 3, 0.40, 'unpaid', '2014-08-09 15:13:08'),
+	(3, 14, 6, 0.60, 'unpaid', '2014-11-04 22:41:02');
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 
 
@@ -387,11 +390,23 @@ CREATE TABLE IF NOT EXISTS `message` (
   `status` enum('read','unread') CHARACTER SET latin1 DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Dumping data for table querendo.message: ~0 rows (approximately)
+-- Dumping data for table querendo.message: ~11 rows (approximately)
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` (`id`, `thread_id`, `message`, `from_id`, `status`, `create_date`) VALUES
+	(1, 1, 'Hello', 7, 'read', '2014-11-04 21:53:12'),
+	(2, 1, 'What', 6, 'read', '2014-11-04 21:53:34'),
+	(3, 1, 'Test', 6, 'read', '2014-11-04 21:53:37'),
+	(4, 1, 'This is working', 7, 'read', '2014-11-04 21:53:44'),
+	(5, 1, 'So', 6, 'read', '2014-11-04 21:56:04'),
+	(6, 1, 'asdf', 6, 'read', '2014-11-04 22:01:41'),
+	(7, 1, 'asdfasdf', 6, 'read', '2014-11-04 22:01:44'),
+	(8, 1, 'What?', 7, 'read', '2014-11-04 22:02:03'),
+	(9, 1, 'Nothing', 7, 'read', '2014-11-04 22:02:07'),
+	(10, 1, 'dfasd', 6, 'read', '2014-11-04 22:08:34'),
+	(11, 1, 'asdfas asfasd', 6, 'read', '2014-11-04 22:08:37');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 
@@ -422,7 +437,7 @@ INSERT INTO `milestone` (`id`, `product_id`, `from_id`, `to_id`, `initiated_by`,
 DROP TABLE IF EXISTS `payments`;
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0',
+  `invoice_id` int(11) NOT NULL DEFAULT '0',
   `txn_id` varchar(50) NOT NULL DEFAULT '0',
   `item_name` varchar(50) NOT NULL DEFAULT '0',
   `item_number` int(11) NOT NULL DEFAULT '0',
@@ -456,7 +471,7 @@ DELETE FROM `payments`;
 DROP TABLE IF EXISTS `payment_log`;
 CREATE TABLE IF NOT EXISTS `payment_log` (
   `payment_log_id` int(100) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0',
+  `invoice_id` int(11) NOT NULL DEFAULT '0',
   `txn_id` varchar(50) NOT NULL DEFAULT '0',
   `item_name` varchar(100) NOT NULL DEFAULT '0',
   `item_number` int(100) NOT NULL DEFAULT '0',
@@ -520,7 +535,7 @@ INSERT INTO `product` (`product_id`, `user_id`, `status`, `transaction_status`, 
 	(11, 3, 'running', 'none', 'Distant Early Warnings', 10, '"The 21st Century Belongs to Canada"\r\n\r\nOn a per capita basis, Canada has more world-class science-fiction writers than any country on Earth. Collected here are the best recent works by Hugo Award winners Spider Robinson, Robert J. Sawyer, and Robert Charles Wilson, Hugo nominees Paddy Forde, James Alan Gardner, Nalo Hopkinson, and Peter Watts, and Aurora Award winners Julie E. Czerneda and Karl Schroeder - 14 advance reports of wonders and dangers yet to come.', 'I want it shipped to me', 0, 'New', '', 'fixed', '20', 0, 0, '1', '2014-07-19 15:49:18', '0000-00-00 00:00:00'),
 	(12, 3, 'running', 'none', 'The Maze', 102, 'A witty young Raptor named Booj teams up with bookish Jason and feisty Gwen to search for a reclusive Raptor named Odon. But their search is a harrowing one. The legend of Odon is that long ago he left Dinotopia\'s society of humans and dinosaurs to live as a hermit. The only way to find Odon is to negotiate a dangerous underground maze. No matter the challenge, however, Booj, Jason, and Gwen are determined to find Odon because he is said to be a magnificent healer, and Gwen\'s father has been infected with a deadly disease that Dinotopia doctors do not know how to cure. Will the three friends be able to get through the maze? And, if they do, will they be able to convince a recluse like Odon to help them? Its a life-and-death challenge and a thrilling tale in this amazing world of Dinotopia', 'I want it shipped to me', 0, 'Used', '', 'fixed', '20', 0, 0, '1', '2014-07-19 15:50:20', '0000-00-00 00:00:00'),
 	(13, 3, 'awarded', 'none', 'Batman', 104, 'When District Attorney Harvey Dent\'s face was forever deformed by a vial of acid, his mind was also fractured and the maniacal Two-Face was born. In \'Batman - Faces\', the demented schizophrenic, enraged by his own isolation and alienation, attempts to create a country of deformed men. Taking over a small Caribbean island and forcing plastic surgeons to perform unholy operations, Two-Face begins to create an army in his own image. But when a simple blackmail investigation leads Batman to discover his former ally\'s mad scheme, Two-Face\'s pursuit of power is quickly ended.', 'I want it shipped to me', 0, 'New', '', 'fixed', '50', 0, 0, '1', '2014-07-19 15:51:32', '2014-08-07 18:37:30'),
-	(14, 7, 'running', 'none', 'asdfds f ', 28, 'fda sdfsdfsadf saf sd', 'I can pick it up', 0, 'Used', '', 'fixed', '1700', 0, 0, '1', '2014-08-07 15:08:19', '0000-00-00 00:00:00'),
+	(14, 7, 'completed', 'product_received', 'asdfds f ', 28, 'fda sdfsdfsadf saf sd', 'I can pick it up', 0, 'Used', '', 'fixed', '1700', 0, 0, '1', '2014-08-07 15:08:19', '2014-11-04 22:41:02'),
 	(16, 6, 'completed', 'product_received', 'Asdf', 10, 'asdf sadf asdf.', 'I can pick it up', 0, 'New', 'HEzK99BG.jpg', 'fixed', '140', 0, 0, '1', '2014-08-07 19:19:04', '2014-08-09 15:35:13'),
 	(17, 6, 'completed', 'product_received', 'Nam', 10, 'Details', 'I want it shipped to me', 0, 'New', '0niBH2QX.jpg', 'fixed', '120', 0, 0, '1', '2014-08-09 15:36:41', '2014-08-09 15:53:11'),
 	(18, 3, 'completed', 'payment_received', 'What The...', 10, 'asdf', 'I want it shipped to me', 0, 'New', '3giw8yix.jpg', 'fixed', '1100', 0, 0, '1', '2014-08-09 16:00:44', '2014-08-09 16:05:36');
@@ -721,9 +736,9 @@ CREATE TABLE IF NOT EXISTS `review` (
   `type` enum('buyer','seller') DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumping data for table querendo.review: ~8 rows (approximately)
+-- Dumping data for table querendo.review: ~9 rows (approximately)
 DELETE FROM `review`;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
 INSERT INTO `review` (`id`, `product_id`, `user_id`, `from_id`, `message`, `rating`, `type`, `create_date`) VALUES
@@ -734,7 +749,8 @@ INSERT INTO `review` (`id`, `product_id`, `user_id`, `from_id`, `message`, `rati
 	(5, 18, 3, 6, 'valo', 5, 'buyer', '2014-08-09 16:05:57'),
 	(6, 18, 6, 3, 'valo', 5, 'seller', '2014-08-09 16:06:06'),
 	(7, 3, 3, 6, 'asdf', 4, 'seller', '2014-08-09 18:13:54'),
-	(8, 3, 6, 3, 'asdf', 5, 'buyer', '2014-08-09 18:14:01');
+	(8, 3, 6, 3, 'asdf', 5, 'buyer', '2014-08-09 18:14:01'),
+	(9, 14, 6, 7, 'test', 5, 'seller', '2014-11-21 23:52:37');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 
 
@@ -774,11 +790,13 @@ CREATE TABLE IF NOT EXISTS `thread` (
   `to_id` int(11) DEFAULT '0',
   `create_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`thread_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table querendo.thread: ~0 rows (approximately)
+-- Dumping data for table querendo.thread: ~1 rows (approximately)
 DELETE FROM `thread`;
 /*!40000 ALTER TABLE `thread` DISABLE KEYS */;
+INSERT INTO `thread` (`thread_id`, `product_id`, `from_id`, `to_id`, `create_date`) VALUES
+	(1, 14, 7, 6, '2014-11-04 21:53:12');
 /*!40000 ALTER TABLE `thread` ENABLE KEYS */;
 
 
@@ -943,8 +961,8 @@ INSERT INTO `user` (`id`, `user_name`, `balance`, `balance_status`, `email`, `fi
 	(1, 'rafi', 5000, NULL, 'me@rafi.pro', 'Faozul', 'Tarafder', '', '', '', 101, 54, '', '', 'Sc15TmPQ.jpg', '2014-07-17 16:38:38', '', '', 'Dhaka', '....................', '', 0, 0, 0, 0, '1', '', '1', '1'),
 	(3, 'amieami', 0, NULL, 'ridwanul.hafiz@gmail.com', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '', '2014-07-19 11:17:54', '', '', '', NULL, '', 5, 1, 2.6666666666667, 3, '1', '', '0', '1'),
 	(4, 'aajahid', 0, NULL, 'abdullah_al_jahid@yahoo.com', 'Abdullah', 'Jahid', NULL, NULL, NULL, NULL, NULL, NULL, '', 'LAsEV4mi.jpg', '2014-07-19 11:29:30', '', '', '', 'Winner of Basis Freelancer Award 2011. Working hard with all latest web technology to develop Custom web application and API.', '', 0, 0, 0, 0, '1', '', '1', '1'),
-	(6, 'rafi_ccj', 0, NULL, 'rafi@dwetech.com', '', '', '', '', '', 11, 54, '', '685f188e4f25af63603dc5b579b31090f459381a242bf7002c8a8e8ea322a4ef', '', '2014-07-19 11:42:16', '', '', '', '', '', 5, 3, 5, 1, '1', '', '0', '1'),
-	(7, 'jahid', 0, NULL, 'abdullah.al.jahid@gmail.com', '', '', '', '', '', 0, 72, '', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', 'bSF5J3nK.jpg', '2014-07-21 12:12:46', '', '', '', '', '', 0, 0, 0, 0, '1', '', '0', '1'),
+	(6, 'rafi_ccj', 0, NULL, 'rafi@dwetech.com', '', '', '', '', '', 11, 54, '', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '', '2014-07-19 11:42:16', '', '', '', '', '', 5, 3, 5, 2, '1', '', '0', '1'),
+	(7, 'jahid', 0, NULL, 'abdullah.al.jahid@gmail.com', '', '', '', '', '', 0, 72, '', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', 'bSF5J3nK.jpg', '2014-07-21 12:12:46', '', '', '0', '', '', 0, 0, 0, 0, '1', '', '0', '1'),
 	(8, 'suvo', 0, NULL, 'me@suvo.me', 'আমি', 'কেউ নাহ', NULL, NULL, NULL, NULL, NULL, NULL, '', '7vvQsN6T.jpg', '2014-08-02 12:03:53', '', '', '', 'সংবিধিবদ্ধ সতর্কীকরণঃ আওয়ামিলীগ সবার জন্য ক্ষতিকর ।\nকোন আওয়ামীলীগ অথবা ১৪ গুষ্টিতে কোন আম্লিগ আছে , ধর্মনিরপেক্ষ , নাস্তিক , বুদ্ধিকম পাবলিক  আমারে এ্যাড দেওনের কখা চিন্তাও করবা না ........\n\n__________________________________________________\n\n\n\n\nযে আমারে চেনে তার কাছে আমি অনেক কিছু , যে আমরে চেনে না তার কাছে আমি কেউ নাহ....\n\nসাধাসিধে, জীবন নিয়ে কোন অভিযোগ নেই। কেউ কেমন আছি জানতে চাইলে খুব খুশি মনেই বলতে পারি -- ভালো আছি :)\n\nআমি খুব বেশি সাধারণ টাইপ ... নিজেকে এবং নিজের প্রতিভা গুলা লুকায় রাখতে ই বেশি পছন্দ করি....\n\nপছন্দ করি হাটা হাটি করতে ... অনেক রাত জাগতে...\n\nআমি মহা ভয়াবহ , কঠিন ফাউল টাইপ ছাত্র ...... তয় আমার মেলা বুদ্ধি .....\nবুদ্ধির জ্বালায় রাইতে ঠিক মতন ঘুমাইতে পারি নাহ...\n\nতার পরেও আমি আর দশ টা মানুষের মত ই মানুষ । খাই দাই, ঘুমাই, বাথরুমে যাই.......কেম্পাস এ যাই, ক্লাস করি.......পরীক্ষাতে ফেল করি......নিজেকে নিয়ে কিছু লেখার নাই\nযদিও অনেক কিছু লিখে ফেলছি ⊙▂⊙\n\n\n...........___\n........../`.,-\\......... _.____\n..........|_c..\'}........|-|......|._\n.___.....)_._/.........|.|......|...|\n[___].../..`\\______.\'|.|......|_,\'\n|..^|../..\\_______/).|-|___|\n|....|./....../......._:::_))_(___\n|....|/`-._/____..|___________|\n`-;_|\\________.`\\.\'||"""""""""||\n.....|.`#####|__|\'||.........||\n......\\.._....._,{~-_}|.........||\n....._).......(...{-__}|.........||\n..../______`\\..|_,__).........||', '', 0, 0, 0, 0, '1', '', '1', '1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
